@@ -49,5 +49,48 @@ namespace ItemRazorV1Real.Service
 
             return filterList;
         }
+
+        public void UpdateItem(Item item)
+        {
+            if (item != null)
+            {
+                foreach (Item i in _items)
+                {
+                    if (i.Id == item.Id)
+                    {
+                        i.Name = item.Name;
+                        i.Price = item.Price;
+                    }
+                }
+            }
+        }
+
+        public Item GetItem(int id)
+        {
+            if (id != null)
+            {
+                foreach (Item item in _items)
+                {
+                    if (item.Id == id)
+                    {
+                        return item;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public Item DeleteItem(int? itemId)
+        {
+            foreach (Item item in _items)
+            {
+                if (item.Id == itemId)
+                {
+                    _items.Remove(item);
+                    return item;
+                }
+            }
+            return null;
+        }
     }
 }
