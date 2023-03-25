@@ -1,4 +1,5 @@
-﻿using ItemRazorV1Real.MockData;
+﻿using ItemRazorV1Real.Comperators;
+using ItemRazorV1Real.MockData;
 using ItemRazorV1Real.Models;
 
 namespace ItemRazorV1Real.Service
@@ -103,6 +104,45 @@ namespace ItemRazorV1Real.Service
                 JsonFileItemService.SaveJsonItems(_items);
             }
             return itemToBeDeleted;
+        }
+
+        public IEnumerable<Item> SortById()
+        {
+            _items.Sort();
+            return _items;
+        }
+
+        public IEnumerable<Item> SortByIdDescending()
+        {
+            _items.Sort();
+            _items.Reverse();
+            return _items;
+        }
+
+        public IEnumerable<Item> SortByName()
+        {
+            _items.Sort(new NameComperator());
+            return _items;
+        }
+
+        public IEnumerable<Item> SortByNameDescending()
+        {
+            _items.Sort(new NameComperator());
+            _items.Reverse();
+            return _items;
+        }
+
+        public IEnumerable<Item> SortByPrice()
+        {
+            _items.Sort(new PriceComperator());
+            return _items;
+        }
+
+        public IEnumerable<Item> SortByPriceDescending()
+        {
+            _items.Sort(new PriceComperator());
+            _items.Reverse();
+            return _items;
         }
     }
 }
