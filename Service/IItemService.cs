@@ -7,5 +7,9 @@ namespace ItemRazorV1Real.Service
         List<Item> GetItems();
 
         void AddItem(Item item);
+
+        IEnumerable<Item> NameSearch(string str);
+
+        IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0);
     }
 }
