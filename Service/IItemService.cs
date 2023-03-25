@@ -11,5 +11,11 @@ namespace ItemRazorV1Real.Service
         IEnumerable<Item> NameSearch(string str);
 
         IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0);
+
+        void UpdateItem(Item item);
+
+        Item GetItem(int id);
+
+        public Item DeleteItem(int? itemId);
     }
 }
