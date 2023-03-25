@@ -1,7 +1,10 @@
+using ItemRazorV1Real.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IItemService, ItemService>();
 
 var app = builder.Build();
 
