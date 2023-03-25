@@ -16,6 +16,19 @@ namespace ItemRazorV1Real.Service
 
         Item GetItem(int id);
 
-        public Item DeleteItem(int? itemId);
+        Item DeleteItem(int? itemId);
+
+        IEnumerable<Item> SortById();
+
+        IEnumerable<Item> SortByIdDescending();
+
+        IEnumerable<Item> SortByName();
+
+        IEnumerable<Item> SortByNameDescending();
+
+        IEnumerable<Item> SortByPrice();
+
+        IEnumerable<Item> SortByPriceDescending();
+
     }
 }

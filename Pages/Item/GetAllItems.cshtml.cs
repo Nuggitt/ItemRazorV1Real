@@ -40,5 +40,41 @@ namespace ItemRazorV1Real.Pages.Item
             Items = _itemService.PriceFilter(MaxPrice,MinPrice).ToList();
             return Page();
         }
+
+        public IActionResult OnGetSortById()
+        {
+            Items = _itemService.SortById().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByIdDescending()
+        {
+            Items = _itemService.SortByIdDescending().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByName()
+        {
+            Items = _itemService.SortByName().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByNameDescending()
+        {
+            Items = _itemService.SortByNameDescending().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByPrice()
+        {
+            Items = _itemService.SortByPrice().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByPriceDescending()
+        {
+            Items = _itemService.SortByPriceDescending().ToList();
+            return Page();
+        }
     }
 }
