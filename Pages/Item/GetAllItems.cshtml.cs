@@ -12,6 +12,7 @@ namespace ItemRazorV1Real.Pages.Item
 
         [BindProperty] public int MinPrice { get; set; }
         [BindProperty] public int MaxPrice { get; set; }
+        
 
         public GetAllItemsModel(IItemService itemService)
         {
@@ -32,6 +33,12 @@ namespace ItemRazorV1Real.Pages.Item
         public IActionResult OnPostNameSearch()
         {
             Items = _itemService.NameSearch(SearchString).ToList();
+            return Page();
+        }
+
+        public IActionResult OnPostLambdaSearch()
+        {
+            Items = _itemService.NameSearchLambda(SearchString).ToList();
             return Page();
         }
 

@@ -1,13 +1,22 @@
 ﻿using ItemRazorV1Real.Comperators;
 using ItemRazorV1Real.MockData;
 using ItemRazorV1Real.Models;
+using ItemRazorV1Real.Pages.Item;
+using System.Runtime.CompilerServices;
 
 namespace ItemRazorV1Real.Service
 {
     public class ItemService : IItemService
     {
         private List<Item> _items;
+
         private JsonFileItemService JsonFileItemService { get; set; }
+
+
+
+
+
+
 
         public ItemService(JsonFileItemService jsonFileItemService)
         {
@@ -41,6 +50,23 @@ namespace ItemRazorV1Real.Service
 
             return nameSearch;
         }
+
+        public IEnumerable<Item> NameSearchLambda(string str)
+        {
+            List<Item> list = new List<Item>();
+            if (string.IsNullOrEmpty(str))
+            {
+                return list;
+            }
+            foreach (Item item in _items.FindAll(x => x.Name.ToLower().Contains(str.ToLower())))
+            {
+                list.Add(item);
+            }
+            return list;
+
+        }
+
+
 
         public IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0)
         {
