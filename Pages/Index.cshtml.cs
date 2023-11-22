@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ItemRazorV1Real.Pages.LogIn;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ItemRazorV1Real.Pages
@@ -14,7 +17,10 @@ namespace ItemRazorV1Real.Pages
 
         public void OnGet()
         {
-
+            if (LogInPageModel.LoggedInUser == null)
+            {
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            }
         }
     }
 }
