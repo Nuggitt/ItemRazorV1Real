@@ -17,7 +17,7 @@ namespace ItemRazorV1Real.Pages
 
         public void OnGet()
         {
-            if (LoginPageModel.LoggedInUser == null)
+            if (LogInPageModel.LoggedInUser == null)
             {
                 HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             }
