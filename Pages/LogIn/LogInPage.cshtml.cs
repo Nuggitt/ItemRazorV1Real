@@ -13,6 +13,7 @@ namespace ItemRazorV1Real.Pages.LogIn
     {
         private UserService _userService;
         public static User LoggedInUser { get; set; } = null;
+       
         [BindProperty]
         public string UserName { get; set; }
         [BindProperty,DataType(DataType.Password)]
@@ -23,6 +24,7 @@ namespace ItemRazorV1Real.Pages.LogIn
         {
             _userService = userService;
         }
+
 
         public async Task<IActionResult> OnPost()
         {
