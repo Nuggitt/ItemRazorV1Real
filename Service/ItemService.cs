@@ -42,19 +42,30 @@ namespace ItemRazorV1Real.Service
             return nameSearch;
         }
 
-        public IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0)
-        {
-            List<Item> filterList = new List<Item>();
-            foreach (Item item in _items)
-            {
-                if ((minPrice == 0 && item.Price <= maxPrice) || (maxPrice == 0 && item.Price >= minPrice) || (item.Price >= minPrice && item.Price <= maxPrice))
-                {
-                    filterList.Add(item);
-                }
-            }
+        //public IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0)
+        //{
+        //    List<Item> filterList = new List<Item>();
+        //    foreach (Item item in _items)
+        //    {
+        //        if ((minPrice == 0 && item.Price <= maxPrice) || (maxPrice == 0 && item.Price >= minPrice) || (item.Price >= minPrice && item.Price <= maxPrice))
+        //        {
+        //            filterList.Add(item);
+        //        }
+        //    }
 
-            return filterList;
+        //    return filterList;
+        //}
+
+        public IEnumerable<Item> PriceFilter(int maxPrice, int minPrice =0)
+        {
+            return from item in _items
+                   where (minPrice == 0 && item.Price == maxPrice) ||
+                   (maxPrice == 0 && item.Price >= minPrice) ||
+                   (item.Price >= minPrice && item.Price <= maxPrice)
+                   select item;
         }
+
+
 
         public void UpdateItem(Item item)
         {
@@ -106,43 +117,85 @@ namespace ItemRazorV1Real.Service
             return itemToBeDeleted;
         }
 
+        //public IEnumerable<Item> SortById()
+        //{
+        //    _items.Sort();
+        //    return _items;
+        //}
+
         public IEnumerable<Item> SortById()
         {
-            _items.Sort();
-            return _items;
+            return from item in _items
+                   orderby item.Id
+                   select item;
         }
+
+        //public IEnumerable<Item> SortByIdDescending()
+        //{
+        //    _items.Sort();
+        //    _items.Reverse();
+        //    return _items;
+        //}
 
         public IEnumerable<Item> SortByIdDescending()
         {
-            _items.Sort();
-            _items.Reverse();
-            return _items;
+            return from item in _items
+                   orderby item.Id descending
+                   select item;
         }
+
+        //public IEnumerable<Item> SortByName()
+        //{
+        //    _items.Sort(new NameComperator());
+        //    return _items;
+        //}
 
         public IEnumerable<Item> SortByName()
         {
-            _items.Sort(new NameComperator());
-            return _items;
+            return from item in _items
+                   orderby item.Name
+                   select item;
         }
+
+        //public IEnumerable<Item> SortByNameDescending()
+        //{
+        //    _items.Sort(new NameComperator());
+        //    _items.Reverse();
+        //    return _items;
+        //}
 
         public IEnumerable<Item> SortByNameDescending()
         {
-            _items.Sort(new NameComperator());
-            _items.Reverse();
-            return _items;
+            return from item in _items
+                   orderby item.Name descending
+                   select item;
         }
+
+        //public IEnumerable<Item> SortByPrice()
+        //{
+        //    _items.Sort(new PriceComperator());
+        //    return _items;
+        //}
 
         public IEnumerable<Item> SortByPrice()
         {
-            _items.Sort(new PriceComperator());
-            return _items;
+            return from item in _items
+                   orderby item.Price
+                   select item;
         }
 
-        public IEnumerable<Item> SortByPriceDescending()
+        //public IEnumerable<Item> SortByPriceDescending()
+        //{
+        //    _items.Sort(new PriceComperator());
+        //    _items.Reverse();
+        //    return _items;
+        //}
+
+        public IEnumerable <Item> SortByPriceDescending()
         {
-            _items.Sort(new PriceComperator());
-            _items.Reverse();
-            return _items;
+            return from item in _items
+                   orderby item.Name descending
+                   select item;
         }
     }
 }
