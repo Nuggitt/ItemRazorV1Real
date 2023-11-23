@@ -44,7 +44,13 @@ namespace ItemRazorV1Real.Pages.Item
 
         public IActionResult OnPostPriceFilter()
         {
-            Items = _itemService.PriceFilter(MaxPrice,MinPrice).ToList();
+            Items = _itemService.PriceFilter(MaxPrice, MinPrice).ToList();
+            return Page();
+        }
+
+        public IActionResult OnPostPriceFilterLambda()
+        {
+            Items = _itemService.PriceFilterLambda(MaxPrice, MinPrice).ToList();
             return Page();
         }
 

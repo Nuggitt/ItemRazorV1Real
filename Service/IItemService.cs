@@ -14,6 +14,8 @@ namespace ItemRazorV1Real.Service
 
         IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0);
 
+        IEnumerable<Item> PriceFilterLambda(int maxPrice, int minPrice = 0);
+
         void UpdateItem(Item item);
 
         Item GetItem(int id);
