@@ -82,6 +82,15 @@ namespace ItemRazorV1Real.Service
             return filterList;
         }
 
+        public IEnumerable<Item> PriceFilterLambda(int maxPrice, int minPrice = 0)
+        {
+            List<Item> filterList = new List<Item>();
+            return _items.FindAll(x =>
+            (minPrice == 0 && x.Price <= maxPrice) ||
+            (maxPrice == 0 && x.Price >= minPrice) ||
+            (x.Price >= minPrice && x.Price <= maxPrice));
+        }
+
         public void UpdateItem(Item item)
         {
             if (item != null)
