@@ -7,13 +7,13 @@ namespace ItemRazorV1Real.Service
     public class ItemService : IItemService
     {
         private List<Item> _items;
-        private JsonFileItemService JsonFileItemService { get; set; }
+        private JsonFileService<Item> JsonFileItemService { get; set; }
 
-        public ItemService(JsonFileItemService jsonFileItemService)
+        public ItemService(JsonFileService<Item> jsonFileItemService)
         {
             JsonFileItemService = jsonFileItemService;
             //_items = MockItems.GetMockItems();
-            _items = JsonFileItemService.GetJsonItems().ToList();
+            _items = JsonFileItemService.GetJsonObjects().ToList();
 
         }
 
@@ -25,7 +25,7 @@ namespace ItemRazorV1Real.Service
         public void AddItem(Item item)
         {
             _items.Add(item);
-            JsonFileItemService.SaveJsonItems(_items);
+            JsonFileItemService.SaveJsonObjects(_items);
         }
 
         public IEnumerable<Item> NameSearch(string str)
@@ -79,7 +79,7 @@ namespace ItemRazorV1Real.Service
                         i.Price = item.Price;
                     }
                 }
-                JsonFileItemService.SaveJsonItems(_items);
+                JsonFileItemService.SaveJsonObjects(_items);
             }
         }
 
@@ -112,7 +112,7 @@ namespace ItemRazorV1Real.Service
             if (itemToBeDeleted != null)
             {
                 _items.Remove(itemToBeDeleted);
-                JsonFileItemService.SaveJsonItems(_items);
+                JsonFileItemService.SaveJsonObjects(_items);
             }
             return itemToBeDeleted;
         }

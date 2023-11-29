@@ -28,5 +28,10 @@
     "Id": 14,
     "Name": "Tr\u00E5dl\u00F8s Headset",
     "Price": 1700
+  },
+  {
+    "Id": 16,
+    "Name": "Wireless Mouse",
+    "Price": 1000
   }
 ]

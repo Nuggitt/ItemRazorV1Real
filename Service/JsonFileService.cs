@@ -3,21 +3,21 @@ using System.Text.Json;
 
 namespace ItemRazorV1Real.Service
 {
-    public class JsonFileItemService
+    public class JsonFileService<T>
     {
         public IWebHostEnvironment WebHostEnvironment { get; }
 
         private string JsonFileName
         {
-            get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", "Items.json"); }
+            get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", typeof(T).Name + "s.json"); }
         }
 
-        public JsonFileItemService(IWebHostEnvironment webHostEnvironment)
+        public JsonFileService(IWebHostEnvironment webHostEnvironment)
         {
             WebHostEnvironment = webHostEnvironment;
         }
 
-        public void SaveJsonItems(List<Item> items)
+        public void SaveJsonObjects(List<T> objs)
         {
             using (FileStream jsonFileWriter = File.Create(JsonFileName))
             {
@@ -26,15 +26,15 @@ namespace ItemRazorV1Real.Service
                     SkipValidation = false,
                     Indented = true
                 });
-                JsonSerializer.Serialize<Item[]>(jsonWriter, items.ToArray());
+                JsonSerializer.Serialize<T[]>(jsonWriter, objs.ToArray());
             }
         }
 
-        public IEnumerable<Item> GetJsonItems()
+        public IEnumerable<T> GetJsonObjects()
         {
             using (StreamReader jsonFileReader = File.OpenText(JsonFileName))
             {
-                return JsonSerializer.Deserialize<Item[]>(jsonFileReader.ReadToEnd());
+                return JsonSerializer.Deserialize<T[]>(jsonFileReader.ReadToEnd());
             }
         }
 
