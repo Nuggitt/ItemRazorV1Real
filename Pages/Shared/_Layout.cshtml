@@ -28,6 +28,14 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Item/GetAllItems">Items</a>
                         </li>
+                        @{
+                            if (LogInPageModel.LoggedInUser != null && LogInPageModel.LoggedInUser.UserName == "admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-page="/Admin/CreateUser">Create User</a>
+                                </li>
+                            }
+                        }
                     </ul>
                     <ul class="navbar-nav">
                         @{
