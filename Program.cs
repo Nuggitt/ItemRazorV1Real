@@ -10,6 +10,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IItemService, ItemService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
 builder.Services.AddSingleton<UserService, UserService>();
+builder.Services.AddTransient<JsonFileService<User>>();
 builder.Services.Configure<CookiePolicyOptions>(options => {
     // This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
