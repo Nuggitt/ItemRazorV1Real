@@ -11,9 +11,16 @@ namespace ItemRazorV1Real.Service
         public UserService(JsonFileService<User> jsonFileService)
         {
             _jsonFileService = jsonFileService;
-            //Users = MockUsers.GetMockUsers();
-            Users = _jsonFileService.GetJsonObjects().ToList();
+            Users = MockUsers.GetMockUsers();
+            //Users = _jsonFileService.GetJsonObjects().ToList();
             _jsonFileService.SaveJsonObjects(Users);
         }
+
+        public void AddUser(User user)
+        {
+            Users.Add(user);
+            _jsonFileService.SaveJsonObjects(Users);
+        }
+
     }
 }

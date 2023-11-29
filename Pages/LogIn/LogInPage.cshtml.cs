@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace ItemRazorV1Real.Pages.LogIn
 {
@@ -33,16 +34,21 @@ namespace ItemRazorV1Real.Pages.LogIn
             foreach (User user in users)
             {
 
-                if (UserName == user.UserName && Password == user.Password)
+                if (UserName == user.UserName)
                 {
+                    var passwordHasher = new PasswordHasher<string>();
+                    if (passwordHasher.VerifyHashedPassword(null, user.Password, Password) == PasswordVerificationResult.Success)
 
-                    LoggedInUser = user;
+                    {
+                        LoggedInUser = user;
 
-                    var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
+                        var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
+                        if (UserName == "admin") claims.Add(new Claim(ClaimTypes.Role, "admin"));
 
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-                    return RedirectToPage("/Item/GetAllItems");
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                        return RedirectToPage("/Item/GetAllItems");
+                    }
 
                 }
 
