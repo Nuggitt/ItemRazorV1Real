@@ -6,10 +6,14 @@ namespace ItemRazorV1Real.Service
     public class UserService
     {
         public List<User> Users { get; set; }
+        private JsonFileService<User> _jsonFileService;
 
-        public UserService()
+        public UserService(JsonFileService<User> jsonFileService)
         {
-            Users = MockUsers.GetMockUsers();
+            _jsonFileService = jsonFileService;
+            //Users = MockUsers.GetMockUsers();
+            Users = _jsonFileService.GetJsonObjects().ToList();
+            _jsonFileService.SaveJsonObjects(Users);
         }
     }
 }

@@ -7,7 +7,8 @@
 
         public User()
         {
-            
+            UserName = "";
+            Password = "";
         }
 
         public User(string userName, string password)
