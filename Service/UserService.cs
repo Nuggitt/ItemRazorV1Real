@@ -25,8 +25,8 @@ namespace ItemRazorV1Real.Service
         public void AddUser(User user)
         {
             Users.Add(user);
-            //_jsonFileService.SaveJsonObjects(Users);
-            _dbService.SaveUsers(Users);
+            _jsonFileService.SaveJsonObjects(Users);
+            //_dbService.SaveUsers(Users);
         }
 
     }

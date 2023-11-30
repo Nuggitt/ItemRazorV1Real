@@ -61,7 +61,7 @@ namespace ItemRazorV1Real.Service
                 foreach (User user in users)
                 {
                     context.Users.Add(user);
-                    //context.SaveChanges();
+                    context.SaveChanges();
 
                 }
                 context.SaveChanges();
