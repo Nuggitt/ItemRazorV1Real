@@ -1,3 +1,4 @@
+using ItemRazorV1Real.EFDbContext;
 using ItemRazorV1Real.Models;
 using ItemRazorV1Real.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -11,6 +12,8 @@ builder.Services.AddSingleton<IItemService, ItemService>();
 builder.Services.AddSingleton<UserService, UserService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
 builder.Services.AddTransient<JsonFileService<User>>();
+builder.Services.AddDbContext<ItemDbContext>();
+builder.Services.AddSingleton<DbService, DbService>();
 builder.Services.Configure<CookiePolicyOptions>(options => {
     // This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;

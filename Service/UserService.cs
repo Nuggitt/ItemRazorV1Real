@@ -5,21 +5,28 @@ namespace ItemRazorV1Real.Service
 {
     public class UserService
     {
-        public List<User> Users { get; set; }
+        public List<User> Users { get; }
         private JsonFileService<User> _jsonFileService;
+        
+        private DbService _dbService;
 
-        public UserService(JsonFileService<User> jsonFileService)
+        public UserService(JsonFileService<User> jsonFileService, DbService dbService)
         {
             _jsonFileService = jsonFileService;
-            Users = MockUsers.GetMockUsers();
-            //Users = _jsonFileService.GetJsonObjects().ToList();
+            _dbService = dbService;
+            //Users = MockUsers.GetMockUsers();
+            Users = _jsonFileService.GetJsonObjects().ToList();
             _jsonFileService.SaveJsonObjects(Users);
+            //Users = _dbService.GetUsers().Result;
+            _dbService.SaveUsers(Users);
+
         }
 
         public void AddUser(User user)
         {
             Users.Add(user);
-            _jsonFileService.SaveJsonObjects(Users);
+            //_jsonFileService.SaveJsonObjects(Users);
+            _dbService.SaveUsers(Users);
         }
 
     }

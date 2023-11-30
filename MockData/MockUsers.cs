@@ -12,7 +12,9 @@ namespace ItemRazorV1Real.MockData
             new User("Leder1",passwordHasher.HashPassword(null, "123")),
             new User("Leder2",passwordHasher.HashPassword(null, "123")),
             new User("Leder3",passwordHasher.HashPassword(null, "123")),
-            new User("admin", passwordHasher.HashPassword(null, "secret"))
+            new User("admin", passwordHasher.HashPassword(null, "secret")),
+            new User("admin1", passwordHasher.HashPassword(null, "secret"))
+
 
         };
 

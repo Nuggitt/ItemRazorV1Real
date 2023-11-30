@@ -7,14 +7,17 @@ namespace ItemRazorV1Real.Service
     public class ItemService : IItemService
     {
         private List<Item> _items;
+        private DbService _dbService;
         private JsonFileService<Item> JsonFileItemService { get; set; }
 
-        public ItemService(JsonFileService<Item> jsonFileItemService)
+        public ItemService(JsonFileService<Item> jsonFileItemService, DbService dbService)
         {
             JsonFileItemService = jsonFileItemService;
+            _dbService = dbService;
             //_items = MockItems.GetMockItems();
             _items = JsonFileItemService.GetJsonObjects().ToList();
-
+            _items = _dbService.GetItems().Result;
+            _dbService.SaveItems(_items);
         }
 
         public List<Item> GetItems()

@@ -20,18 +20,28 @@
     "Price": 1200
   },
   {
-    "Id": 15,
-    "Name": "Musem\u00E5tte",
-    "Price": 300
-  },
-  {
     "Id": 14,
     "Name": "Tr\u00E5dl\u00F8s Headset",
     "Price": 1700
   },
   {
+    "Id": 15,
+    "Name": "Musem\u00E5tte",
+    "Price": 300
+  },
+  {
     "Id": 16,
     "Name": "Wireless Mouse",
     "Price": 1000
+  },
+  {
+    "Id": 17,
+    "Name": "Wireless Headset",
+    "Price": 1400
+  },
+  {
+    "Id": 18,
+    "Name": "Tr\u00E5dl\u00F8st Tastetur",
+    "Price": 600
   }
 ]
