@@ -20,9 +20,9 @@ namespace ItemRazorV1Real.Models
 
         [Display(Name = "Pris")]
         [Required(ErrorMessage = "Der skal angives en pris")]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
-        public Item(int id, string name, double price)
+        public Item(int id, string name, decimal price)
         {
             Id= id;
             Name= name;

@@ -10,7 +10,7 @@ namespace ItemRazorV1Real.Pages.LogIn
        
         public async Task<IActionResult> OnGet()
         {
-            LogInPageModel.LoggedInUser = null;
+            //LogInPageModel.LoggedInUser = null;
 
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToPage("/index");

@@ -13,7 +13,7 @@ namespace ItemRazorV1Real.Pages.LogIn
     public class LogInPageModel : PageModel
     {
         private UserService _userService;
-        public static User LoggedInUser { get; set; } = null;
+        //public static User LoggedInUser { get; set; } = null;
        
         [BindProperty]
         public string UserName { get; set; }
@@ -40,7 +40,7 @@ namespace ItemRazorV1Real.Pages.LogIn
                     if (passwordHasher.VerifyHashedPassword(null, user.Password, Password) == PasswordVerificationResult.Success)
 
                     {
-                        LoggedInUser = user;
+                        //LoggedInUser = user;
 
                         var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
                         if (UserName == "admin") claims.Add(new Claim(ClaimTypes.Role, "admin"));
