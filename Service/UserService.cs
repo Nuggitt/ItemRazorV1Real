@@ -7,18 +7,21 @@ namespace ItemRazorV1Real.Service
     {
         public List<User> Users { get; }
         private JsonFileService<User> _jsonFileService;
-        
-        private DbService _dbService;
+        //private DbService _dbService;
+        private DbGenericService<User> _dbService;
 
-        public UserService(JsonFileService<User> jsonFileService, DbService dbService)
+
+        public UserService(JsonFileService<User> jsonFileService, DbGenericService<User> dbService)
         {
             _jsonFileService = jsonFileService;
             _dbService = dbService;
             //Users = MockUsers.GetMockUsers();
-            Users = _jsonFileService.GetJsonObjects().ToList();
-            _jsonFileService.SaveJsonObjects(Users);
+            //Users = _jsonFileService.GetJsonObjects().ToList();
+            //_jsonFileService.SaveJsonObjects(Users);
             //Users = _dbService.GetUsers().Result;
-            _dbService.SaveUsers(Users);
+            //_dbService.SaveUsers(Users);
+            Users = _dbService.GetObjectsAsync().Result.ToList();
+
 
         }
 
@@ -26,7 +29,7 @@ namespace ItemRazorV1Real.Service
         {
             Users.Add(user);
             _jsonFileService.SaveJsonObjects(Users);
-            _dbService.SaveUsers(Users);
+            //_dbService.SaveUsers(Users);
         }
 
     }

@@ -13,7 +13,9 @@ builder.Services.AddSingleton<UserService, UserService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
 builder.Services.AddTransient<JsonFileService<User>>();
 builder.Services.AddDbContext<ItemDbContext>();
-builder.Services.AddSingleton<DbService, DbService>();
+//builder.Services.AddSingleton<DbService, DbService>();
+builder.Services.AddTransient<DbGenericService<Item>, DbGenericService<Item>>();
+builder.Services.AddTransient<DbGenericService<User>, DbGenericService<User>>();
 builder.Services.Configure<CookiePolicyOptions>(options => {
     // This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
